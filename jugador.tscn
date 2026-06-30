@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://uqxnui0jtp1w"]
+
+[ext_resource type="Script" uid="uid://53har51emtgn" path="res://jugador_script.gd" id="1_16k11"]
+[ext_resource type="Script" uid="uid://d1l0y0u72k7tj" path="res://AutoShooter.gd" id="2_omvyu"]
+[ext_resource type="PackedScene" uid="uid://u4ueyy0vo83v" path="res://bala.tscn" id="3_8o684"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3rot"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y3rot"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ctqc"]
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1268675568]
+script = ExtResource("1_16k11")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2065566188]
+shape = SubResource("CapsuleShape3D_y3rot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=61526241]
+mesh = SubResource("CapsuleMesh_y3rot")
+
+[node name="PuntaArma" type="Node3D" parent="." unique_id=159691953]
+script = ExtResource("2_omvyu")
+escena_bala = ExtResource("3_8o684")
+
+[node name="DetectorChoque" type="Area3D" parent="." unique_id=1077731481]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectorChoque" unique_id=1419600665]
+shape = SubResource("CapsuleShape3D_0ctqc")
+
+[connection signal="body_entered" from="DetectorChoque" to="." method="_on_detector_choque_body_entered"]

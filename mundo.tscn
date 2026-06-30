@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cl3e1rhf0v8v3"]
+
+[ext_resource type="PackedScene" uid="uid://uqxnui0jtp1w" path="res://jugador.tscn" id="1_6ba58"]
+[ext_resource type="Script" uid="uid://bhk8rgy22etng" path="res://camino.gd" id="1_lgngo"]
+[ext_resource type="Script" uid="uid://bhxklddun60s" path="res://Spawner.gd" id="3_fw4w5"]
+[ext_resource type="PackedScene" uid="uid://22x38ls6no0s" path="res://barril.tscn" id="4_otwa2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y3rot"]
+size = Vector3(15, 1, 30)
+
+[node name="Mundo" type="Node3D" unique_id=1014920732]
+script = ExtResource("1_lgngo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=53698224]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="PiezaCamino" type="MeshInstance3D" parent="." unique_id=747970172]
+mesh = SubResource("BoxMesh_y3rot")
+
+[node name="Jugador" parent="." unique_id=1268675568 instance=ExtResource("1_6ba58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Jugador" unique_id=751204885]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0.011, 5, 12)
+
+[node name="Spawner" type="Node3D" parent="." unique_id=2079070220]
+script = ExtResource("3_fw4w5")
+escena_barril = ExtResource("4_otwa2")

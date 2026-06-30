@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://22x38ls6no0s"]
+
+[ext_resource type="Script" uid="uid://dc70ox5nn0o3q" path="res://BarrelHealth.gd" id="1_rol37"]
+[ext_resource type="Script" uid="uid://bpliagcnakh0v" path="res://UIHealthText.gd" id="2_rol37"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y3rot"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y3rot"]
+
+[node name="Barril" type="StaticBody3D" unique_id=396648993 groups=["barriles"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1999544310]
+shape = SubResource("BoxShape3D_y3rot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1039123499]
+mesh = SubResource("BoxMesh_y3rot")
+
+[node name="BarrelHealth" type="Node" parent="." unique_id=2110850199]
+script = ExtResource("1_rol37")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1484372360]
+script = ExtResource("2_rol37")
+
+[node name="Label3D2" type="Label3D" parent="." unique_id=31744907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0027730465, 1.0356923, -0.04242742)
+pixel_size = 0.035
+script = ExtResource("2_rol37")
