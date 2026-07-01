@@ -3,19 +3,32 @@
 [ext_resource type="Script" uid="uid://dhxhbbqcrqdey" path="res://compuerta_mejora.gd" id="1_mlscm"]
 [ext_resource type="Script" uid="uid://bpliagcnakh0v" path="res://UIHealthText.gd" id="2_gjc3y"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_eltg8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7st5j"]
+transparency = 1
+albedo_color = Color(0.08235294, 0.5372549, 1, 1)
+emission_enabled = true
+emission = Color(0.08235294, 0.5372549, 1, 1)
+emission_energy_multiplier = 2.15
+
+[sub_resource type="BoxMesh" id="BoxMesh_ukil5"]
+material = SubResource("StandardMaterial3D_7st5j")
+size = Vector3(3, 2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eltg8"]
+size = Vector3(3, 2, 0.1)
 
 [node name="CompuertaMejora" type="Node3D" unique_id=715410698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4837077, 0)
 script = ExtResource("1_mlscm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1275226919]
-mesh = SubResource("BoxMesh_eltg8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012205362, 0.1907773, 0)
+mesh = SubResource("BoxMesh_ukil5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1456315050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50750995, 0.21428013, 1.205071)
 shape = SubResource("BoxShape3D_eltg8")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=132120418]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9782139, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.116075, 0)
 script = ExtResource("2_gjc3y")
