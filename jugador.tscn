@@ -22,6 +22,8 @@ mesh = SubResource("CapsuleMesh_y3rot")
 [node name="PuntaArma" type="Node3D" parent="." unique_id=159691953]
 script = ExtResource("2_omvyu")
 escena_bala = ExtResource("3_8o684")
+velocidad_disparo = 1.0
+"daño_por_bala" = 2
 
 [node name="DetectorChoque" type="Area3D" parent="." unique_id=1077731481]
 

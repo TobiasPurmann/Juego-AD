@@ -33,3 +33,17 @@ func terminar_y_reiniciar_juego() -> void:
 	# REGLA DE ORO DE GODOT PARA REINICIAR:
 	# Recargamos la escena actual desde cero, limpiando toda la memoria y spawners
 	get_tree().reload_current_scene()
+
+# Variable para llevar el control del nivel actual del jugador
+var nivel_arma: int = 1
+
+func subir_nivel_arma() -> void:
+	nivel_arma += 1
+	print("¡Mejora obtenida! Nivel de arma: ", nivel_arma)
+	
+	# Buscamos el nodo AutoShooter que está dentro del Jugador
+	var shooter = find_child("AutoShooter*", true, false) 
+	if shooter:
+		# Lógica simple: le restamos tiempo a la cadencia de disparo
+		# Usamos max() para ponerle un tope y que la velocidad nunca baje de 0.1 segundos
+		shooter.velocidad_disparo = max(0.1, shooter.velocidad_disparo - 0.05)

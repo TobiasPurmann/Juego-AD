@@ -3,6 +3,11 @@ extends Node3D
 @onready var pieza_original = $PiezaCamino
 @onready var jugador = $Jugador
 
+# --- NUEVAS VARIABLES PARA LOS OBSTÁCULOS ---
+@export_category("Generación de Obstáculos")
+@export var escena_enemigo: PackedScene
+@export var escena_compuerta: PackedScene
+
 var largo_pieza: float = 30.0 # Asegúrate de que coincida con el tamaño Z de tu BoxMesh
 var lista_caminos: Array = []
 var proxima_posicion_z: float = 0.0
@@ -46,15 +51,43 @@ func crear_siguiente_pieza():
 	nueva_pieza.position = Vector3(0, 0, proxima_posicion_z - (largo_pieza / 2))
 	lista_caminos.append(nueva_pieza)
 	
+	# --- LÓGICA DE BIFURCACIÓN (ENEMIGO VS COMPUERTA) ---
+	# Verificamos que hayas asignado las escenas en el editor de Godot
+	if escena_enemigo and escena_compuerta:
+		var enemigo = escena_enemigo.instantiate()
+		var compuerta = escena_compuerta.instantiate()
+		
+		# Los añadimos como hijos de la NUEVA PIEZA para que se muevan o borren con ella
+		nueva_pieza.add_child(enemigo)
+		nueva_pieza.add_child(compuerta)
+		
+		# Decidimos al azar si el enemigo va a la derecha (true) o izquierda (false)
+		var enemigo_a_la_derecha: bool = randf() > 0.5
+		
+		# Posiciones en el eje X para los dos carriles
+		var posicion_carril_izquierdo: float = -2.5
+		var posicion_carril_derecho: float = 2.5
+		
+		# Ajustamos la altura (Y) según el centro de tus modelos (0.5 es un ejemplo estándar)
+		if enemigo_a_la_derecha:
+			enemigo.position = Vector3(posicion_carril_derecho, 0.5, 0)
+			compuerta.position = Vector3(posicion_carril_izquierdo, 0.5, 0)
+		else:
+			enemigo.position = Vector3(posicion_carril_izquierdo, 0.5, 0)
+			compuerta.position = Vector3(posicion_carril_derecho, 0.5, 0)
+	
 	# Desplazamos el punto de control para la siguiente pieza
 	proxima_posicion_z -= largo_pieza
 	piezas_creadas += 1
 
 func crear_meta():
-	print("¡La meta está cerca!");
+	print("¡La meta está cerca!")
 	
-# Puedes pegar esto al final del script del Jugador
 func _input(event):
 	# Si presionas la tecla "R", el juego se reinicia desde cero limpiamente
 	if Input.is_key_pressed(KEY_R):
 		get_tree().reload_current_scene()
+		
+	# Si presionas la tecla "ESC", el juego se cierra por completo
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()

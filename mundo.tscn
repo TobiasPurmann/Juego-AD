@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://uqxnui0jtp1w" path="res://jugador.tscn" id="1_6ba58"]
 [ext_resource type="Script" uid="uid://bhk8rgy22etng" path="res://camino.gd" id="1_lgngo"]
+[ext_resource type="PackedScene" uid="uid://lhglua4w6r1t" path="res://compuerta_mejora.tscn" id="3_aou4a"]
 [ext_resource type="Script" uid="uid://bhxklddun60s" path="res://Spawner.gd" id="3_fw4w5"]
 [ext_resource type="PackedScene" uid="uid://22x38ls6no0s" path="res://barril.tscn" id="4_otwa2"]
 
@@ -10,6 +11,8 @@ size = Vector3(15, 1, 30)
 
 [node name="Mundo" type="Node3D" unique_id=1014920732]
 script = ExtResource("1_lgngo")
+escena_enemigo = ExtResource("4_otwa2")
+escena_compuerta = ExtResource("3_aou4a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=53698224]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

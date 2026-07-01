@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://lhglua4w6r1t"]
+
+[ext_resource type="Script" uid="uid://dhxhbbqcrqdey" path="res://compuerta_mejora.gd" id="1_mlscm"]
+[ext_resource type="Script" uid="uid://bpliagcnakh0v" path="res://UIHealthText.gd" id="2_gjc3y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eltg8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eltg8"]
+
+[node name="CompuertaMejora" type="Node3D" unique_id=715410698]
+script = ExtResource("1_mlscm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1275226919]
+mesh = SubResource("BoxMesh_eltg8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1456315050]
+shape = SubResource("BoxShape3D_eltg8")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=132120418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9782139, 0)
+script = ExtResource("2_gjc3y")

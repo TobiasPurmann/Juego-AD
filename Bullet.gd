@@ -23,10 +23,19 @@ func _physics_process(delta: float) -> void:
 
 # ESTA ES LA FUNCIÓN CLAVE MODIFICADA:
 func _on_body_entered(body: Node3D) -> void:
-	# Si lo que tocamos pertenece al grupo 'barriles' o tiene el componente de vida
+	# 1. Verificación para enemigos/barriles
 	if body.is_in_group("barriles") or body.has_node("BarrelHealth"):
 		var vida_nodo = body.get_node("BarrelHealth")
 		if vida_nodo:
-			vida_nodo.recibir_daño(daño) # Le aplicamos el daño de la bala
-		
-		queue_free() # La bala se destruye tras impactar
+			vida_nodo.recibir_daño(daño)
+		queue_free() # La bala se destruye
+		return
+
+	# 2. Verificación para la compuerta de mejora
+	if body.is_in_group("mejoras") or body.has_node("ContadorMejora"):
+		var mejora_nodo = body.get_node("ContadorMejora")
+		if mejora_nodo:
+			# Cada bala reduce el contador en 1 (o según el daño)
+			mejora_nodo.registrar_impacto(1) 
+		queue_free() # La bala se destruye
+		return
